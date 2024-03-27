@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def cart(request,total=0,count=0,cart_items=None):
+    ct_items=None
     try:
         ct=Cart.objects.get(cart_id=cart_idd(request))
         ct_items=OrderedItems.objects.filter(item_owner=ct,active=True)

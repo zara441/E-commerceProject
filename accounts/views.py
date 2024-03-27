@@ -7,8 +7,9 @@ from django.contrib.auth import authenticate,login,logout as authlogout
 # Create your views here.
 def login_signup(request):
     context={}
+    print('--------------------------------------------->',request.POST)
     if request.POST and 'signup' in request.POST:
-        context['register']=False
+        context['register']=True
         try:
             username=request.POST.get('username')
             fnm=request.POST.get('fname')
@@ -29,11 +30,15 @@ def login_signup(request):
             error='INVALID! Invalid credentials'
             messages.error(request,error)  
     if request.POST and 'login' in request.POST:
-        context['register']=True
+        
+        context['register']=False
         try:
-            email=request.POST.get('Email')
+            username=request.POST.get('username')
+           
             pasd=request.POST.get('password')
-            user=authenticate(email=email,password=pasd)
+            
+            user=authenticate(username=username,password=pasd)
+            
             if user:
                 login(request,user)
                 return redirect('/')
@@ -45,7 +50,7 @@ def login_signup(request):
             messages.error(request,error)             
 
 
-    return render(request,'login&signup.html') 
+    return render(request,'login&signup.html',context) 
 
 def logout(request):
     authlogout(request)
