@@ -1,0 +1,69 @@
+{% extends 'search.html' %}
+{% load static %}
+{% load chunks %}
+
+{% block search %}
+   
+      <!-- vagetables section start -->
+      
+     
+      
+      <div class="vagetables_section layout_padding">
+         
+         <div class="container">
+            
+            <div class="row">
+               <div class="col-sm-12">
+                  <h1 class="vagetables_taital">Our Products</h1>
+
+               </div>
+               
+            </div>
+            {% for prod in products %}
+            <div class="courses_section_2">
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="hover01 column">
+                        <figure><img src="{{prod.img.url}}"></figure>
+                     </div>
+                     <h3 class="harshal_text">{{prod.title}}</h3>
+                        <h3 class="rate_text">${{prod.price}}</h3>
+                     <div class="read_bt_1"><a href="{{prod.get_url}}">Know More</a></div>
+                  </div>
+               
+               </div>
+            </div><br><br><br>
+            {% endfor %}
+            <!--paginator starts-->
+            
+
+            <div class="center">
+               <div class="pagination">
+                  {% if products.has_previous %}
+               
+                  <a href="?page={{products.previous_page_number}}" class="active">&laquo;</a>
+                  {% endif %}
+                  {% for i in products.paginator.page_range %}
+                  <a href="?page={{i}}"><span>{{i}}</span></a>
+                  <!-- <a href="#"><span>2</span></a>
+                  <a href="#"><span>3</span></a> -->
+                  {% endfor %}
+                  {% if products.has_next %}
+                  <a href="?page={{products.next_page_number}}" class="active">&raquo;</a>
+                  {% endif %}
+
+
+               </div>
+            </div><br><br><br><br>         
+
+
+
+      <!-- Javascript files-->
+      <script src="{% static 'staticproducts/js/jquery.min.js' %}"></script>
+      <script src="{% static 'staticproducts/js/popper.min.js' %}"></script>
+      <script src="{% static 'staticproducts/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'staticproducts/js/jquery-3.0.0.min.js' %}"></script>
+      <script src="{% static 'staticproducts/js/plugin.js' %}"></script>
+{% endblock search %}      
+ 
+   

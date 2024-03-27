@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Responsive Login and Signup Form </title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'staticlogin/css/style.css' %}">
+                
+        <!-- Boxicons CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <style>
+            .container {
+                height: 150vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: url(../images/bgg.jpg);
+                column-gap: 30px;
+            }
+            
+			.error {
+ 					 color:red;
+					}   
+
+			.success {
+  						color:green;
+					}    
+		
+        </style>
+                        
+    </head>
+    <body>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header>Login</header>
+                    
+                    <form action="{% url 'login' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" name="Email" class="input">
+                        </div><br>
+                        {% if messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {% for message in messages %}
+                            <div class="{{message.tags}}">{{message}}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="color:red">&#x2718;</a></div>
+                            
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    
+                        <div class="field input-field">
+                            <input type="password" placeholder="Password" name="password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+
+                        <div class="form-link">
+                            <a href="#" class="forgot-pass">Forgot password?</a>
+                        </div>
+
+                        <div class="field button-field">
+                            <button name="login">Login</button>
+                        </div>
+                    </form>
+
+                    <div class="form-link">
+                        <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="media-options">
+                    <a href="#" class="field facebook">
+                        <i class='bx bxl-facebook facebook-icon'></i>
+                        <span>Login with Facebook</span>
+                    </a>
+                </div>
+
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="{% static 'staticlogin/images/google.png' %}" alt="" class="google-img">
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Signup Form -->
+
+            <div class="form signup">
+                <div class="form-content">
+                    <header>Signup</header>
+                    {% if messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert"><br><br>
+                        {% for message in messages %}
+                        <div class="{{message.tags}}">{{message}}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="color:red">&#x2718;</a></div>
+                        
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form action="{% url 'login' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="field input-field">
+                            <input type="text" placeholder="username" name="username" class="input">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="First name" name="fname" class="input">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="Last name" name="lname" class="input">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="Address" name="address" class="input">
+                        </div>
+                       
+                        <div class="field input-field">
+                            <input type="number" placeholder="phone number" name="phone" class="input">
+                        </div>
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" name="Email" class="input">
+                        </div>
+
+                        <div class="field input-field">
+                            <input type="password" placeholder="Create password" name="password1" class="password">
+                        </div>
+
+                        <div class="field input-field">
+                            <input type="password" placeholder="Confirm password" name="password2" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+
+                        <div class="field button-field">
+                            <button name="signup">Signup</button>
+                        </div>
+                    </form>
+
+                    <div class="form-link">
+                        <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="media-options">
+                    <a href="#" class="field facebook">
+                        <i class='bx bxl-facebook facebook-icon'></i>
+                        <span>Login with Facebook</span>
+                    </a>
+                </div>
+
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="{% static 'staticlogin/images/google.png' %}" alt="" class="google-img">
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- JavaScript -->
+        <script src="{% static 'staticlogin/js/script.js' %}"></script>
+    </body>
+</html>
