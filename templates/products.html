@@ -5,6 +5,30 @@
 {% block search %}
    
       <!-- vagetables section start -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      .small-container{
+         max-width: 1080px;
+         margin: auto;
+         padding-left: 25px;
+         padding-right: 25px;
+      }
+      .col-4{
+         flex-basis: 25%;
+         padding: 30px;
+         min-width: 300px;
+         margin-bottom: 50px;
+         transition: transform 0.5s;
+      }  
+   </style>
+</head>
+<body>
+   
+   
       
      
       
@@ -19,21 +43,25 @@
                </div>
                
             </div>
-            {% for prod in products %}
-            <div class="courses_section_2">
+            
+            <div class="small-container">
                <div class="row">
+                  {% for prod in products %}                  <!--    courses_section_2 -->
                   <div class="col-md-4">
+                     
                      <div class="hover01 column">
                         <figure><img src="{{prod.img.url}}"></figure>
                      </div>
                      <h3 class="harshal_text">{{prod.title}}</h3>
                         <h3 class="rate_text">${{prod.price}}</h3>
                      <div class="read_bt_1"><a href="{{prod.get_url}}">Know More</a></div>
+                     
                   </div>
+                  {% endfor %}
                
                </div>
             </div><br><br><br>
-            {% endfor %}
+            
             <!--paginator starts-->
             
 
@@ -64,6 +92,8 @@
       <script src="{% static 'staticproducts/js/bootstrap.bundle.min.js' %}"></script>
       <script src="{% static 'staticproducts/js/jquery-3.0.0.min.js' %}"></script>
       <script src="{% static 'staticproducts/js/plugin.js' %}"></script>
+</body>
+</html>         
 {% endblock search %}      
  
    

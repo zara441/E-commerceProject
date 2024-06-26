@@ -38,6 +38,7 @@ class Product(models.Model):
     stock=models.IntegerField()
     available=models.BooleanField()
     rating=models.FloatField()
+    brought_rate=models.IntegerField(default=0)
 
     def __str__(self):
         return '{}'.format(self.title)

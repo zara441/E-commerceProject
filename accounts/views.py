@@ -10,7 +10,9 @@ def login_signup(request):
     print('--------------------------------------------->',request.POST)
     if request.POST and 'signup' in request.POST:
         context['register']=True
+        print('=========================================================y')
         try:
+            print('=========================================================e')
             username=request.POST.get('username')
             fnm=request.POST.get('fname')
             lnm=request.POST.get('lname')
@@ -19,17 +21,25 @@ def login_signup(request):
             email=request.POST.get('Email')
             paswd1=request.POST.get('password1')
             paswd2=request.POST.get('password1')
+            print('=========================================================s')
             if paswd1==paswd2:
+                print('=========================================================y')
                 user=User.objects.create_user(username=username,first_name=fnm,last_name=lnm,email=email,password=paswd1)
                 user.save()
+                print('=========================================================e')
                 customer=Customer.objects.create(user=user,username=username,address=addre,phone_number=phone)
+                print('=========================================================s')
                 messages.success(request,'successfully signed up')
+                print('=========================================================y')
             else:
+                print('=========================================================N')
                 messages.info(request,'Invalid credentials')
         except Exception as e:
+            print('=========================================================O')
             error='INVALID! Invalid credentials'
             messages.error(request,error)  
     if request.POST and 'login' in request.POST:
+        print('--------------------------AnonymousUser------------>',request.user)
         
         context['register']=False
         try:

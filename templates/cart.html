@@ -65,7 +65,7 @@
                 </div>
 
 
-                {% for product in ordered_products %}   
+                {% for product in ordered_products %}
                 <div class="card mb-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
@@ -82,13 +82,15 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
+                        
+                        
                         <div style="width: 50px;padding-right:10px;">
                           <h5 class="fw-normal mb-0" style="padding-left: 15px;"><a href="{% url 'decrement' product.product.id %}"><button class="btn btn-primary"name="bt">-</button></a><br>&nbsp;&nbsp;{{product.quantity}}<br><a href="{% url 'increment' product.product.id %}"><button class="btn btn-primary">+</button></a></h5>
                           <!--<h5 class="mb-0" style="padding-left: 30px;">                       <input type="text" class="form-control text-center border border-secondary" name="qty" placeholder="1" aria-label="Example text with button addon" aria-describedby="button-addon1" /> -->
                         </div>
                         
                         <div style="width: 80px;">
-                          <h5 class="mb-0"><span style="color:blue;padding-left: 15px;">$</span>{{product.total}}</h5>
+                          <h5 class="mb-0" style="padding-right: 0px;overflow: hidden;"><span style="color:blue;padding-left: 15px;">$</span>{{product.total}}</h5>
                         </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0" style="padding-left: 30px;"><a href="{% url 'remove' product.id %}">X</h5>
@@ -126,7 +128,8 @@
                         class="fab fa-cc-amex fa-2x me-2"></i></a>
                     <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                    <form class="mt-4">
+                    <form  action="{% url 'home' %}" method="post" class="mt-4">
+                      {% csrf_token %}
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
                           placeholder="Cardholder's Name" />
@@ -155,33 +158,30 @@
                           </div>
                         </div>
                       </div>
+                      <hr class="my-4">
 
-                    </form>
-
-                    <hr class="my-4">
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">${{total}}</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">${{total}}</p>
-                    </div>
-
-                    <button type="button" class="btn btn-info btn-block btn-lg">
                       <div class="d-flex justify-content-between">
-<!--                        <span>$4818.00</span>-->
-                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <p class="mb-2">Subtotal</p>
+                        <p class="mb-2">${{total}}</p>
                       </div>
-                    </button>
 
+                      <div class="d-flex justify-content-between">
+                        <p class="mb-2">Shipping</p>
+                        <p class="mb-2">{{quantity}}</p>
+                      </div>
+
+                      <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">Total(Incl. taxes)</p>
+                        <p class="mb-2">${{total}}</p>
+                      </div>
+
+                      <button type="submit" class="btn btn-info btn-block btn-lg" name="Checkout">
+                        <div class="d-flex justify-content-between">
+
+                          <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                      </button>
+                    </form>
                   </div>
                 </div>
 
